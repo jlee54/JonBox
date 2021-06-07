@@ -8,7 +8,9 @@
     "dev": "nodemon api/main.js"
   },
   "dependencies": {
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "nano": "^9.0.3",
     "socket.io": "^4.1.2",
     "uuid": "^8.3.2"
   },
