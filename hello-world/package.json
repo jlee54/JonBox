@@ -15,6 +15,7 @@
     "socket.io-client": "^4.1.2",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
+    "vue-socket.io": "https://github.com/MetinSeylan/Vue-Socket.io.git",
     "vuex": "^4.0.0-0"
   },
   "devDependencies": {

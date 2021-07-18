@@ -4,18 +4,44 @@ import "./registerServiceWorker";
 import router from "./router";
 import store from "./store";
 
-createApp(App).use(store).use(router).mount("#app");
+import socketio from './plugins/Socket.io'
 
-import { io } from "socket.io-client";
-const socket = io("http://localhost:3000", {});
-
-socket.emit("test", {}, (res) => {
- if ("error" in res) {
-    // handle the error
-    console.log('error');
-  } else {
-    // success!
-    console.log('sucess');
-  }
-  console.log(res);
+const app = createApp(App);
+app.use(store);
+app.use(router);
+app.use(socketio, {
+    connection: 'http://localhost:3000',
+    options: {}
 });
+app.mount("#app");
+
+
+
+//io.on("connection", socket => {
+  // socket.on("hello", () => {
+  //   console.log('hello found');
+  // })
+// }); 
+
+
+
+// socket.emit("test", {}, (res) => {
+//  if ("error" in res) {
+//     // handle the error
+//     console.log('error');
+//   } else {
+//     // success!
+//     console.log('sucess');
+//   }
+//   console.log(res);
+// });
+
+// createApp(App).use(socket);
+
+// new Vue({
+//     router,
+//     store,
+//     render: h => h(App)
+// }).$mount('#app')
+
+// console.log(this.sockets);

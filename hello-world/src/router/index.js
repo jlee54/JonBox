@@ -16,6 +16,20 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
   },
+  {
+    path: "/",
+    name: "Lobby",
+    component: () =>
+      import(/* webpackChunkName: "lobby" */ "../views/Lobby.vue"),
+    props: true,
+  },
+  {
+    path: "/",
+    name: "PreLobby",
+    component: () =>
+      import(/* webpackChunkName: "preLobby" */ "../views/PreLobby.vue"),
+    props: true,
+  }
 ];
 
 const router = createRouter({
