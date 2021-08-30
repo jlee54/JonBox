@@ -39,9 +39,10 @@ export default {
       response = await response.json();
 
       this.$router.push({
-        name: "Lobby",
+        name: "PreLobby",
         params: {
-          code: response.code
+          code: response.code,
+          playerId: response.playerId
         }
       });
     },

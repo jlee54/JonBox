@@ -16,6 +16,21 @@ module.exports = async (req, res) => {
             error: "Lobby not found"
         });
     } else {
+        let q = {
+            selector: {
+                code: { "$eq": lobby_code },
+                type: { "$eq": "Player"},
+            },
+            fields: ["id", "name"],
+        };
+        let player_count = (await db.find(q)).docs.length
+        let max_player_count = 8
+        if (player_count >= max_player_count) {
+            return res.send({
+                error: "Max player count " + max_player_count + " has already been reached"
+            });
+        }
+
         let player_data = {
             code: lobby_code,
             type: "Player"

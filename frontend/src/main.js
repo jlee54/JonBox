@@ -13,6 +13,7 @@ app.use(socketio, {
     connection: 'http://localhost:3000',
     options: {}
 });
+
 app.mount("#app");
 
 

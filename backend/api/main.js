@@ -1,5 +1,6 @@
 // Express
 require("dotenv").config();
+global.fetch = require("node-fetch");
 const express = require("express");
 const app = express();
 const http = require("http").Server(app);
@@ -14,7 +15,6 @@ app.use(function(req, res, next) {
 app.use(express.static("./static"));
 app.use(express.json());
 
-
 const createLobby = require("./routes/createLobby");
 app.post("/createLobby", createLobby);
 
@@ -23,6 +23,18 @@ app.post("/joinLobby", joinLobby);
 
 const configurePlayer = require("./routes/configurePlayer");
 app.put("/configurePlayer", configurePlayer);
+
+const getLobby = require("./routes/getLobby");
+app.get("/getLobby", getLobby);
+
+const getValidTwitterAccount = require("./routes/getValidTwitterAccount");
+app.get("/getValidTwitterAccount", getValidTwitterAccount);
+
+const validateTweetStreet = require("./routes/gameConfigurations/validateTweetStreet");
+app.post("/validateTweetStreet", validateTweetStreet);
+
+const getTweetStreetLobbyInfo = require("./routes/games/getTweetStreetLobbyInfo");
+app.post("/getTweetStreetLobbyInfo", getTweetStreetLobbyInfo);
 
 //const db = require('../db/couch');
 const io = require('../socket.io/socket').init(app, http).then((socket2) => {
@@ -62,3 +74,41 @@ http.listen(3000, function() {
 
 //   let lobby = await createLobby();
 // })()
+
+
+const Twitter = require("../twitter/twitter.js");
+
+// Twitter.getTweetsByUserId('160396614').then(tweets => {
+//   console.log(tweets);
+// });
+
+// Twitter.getUserByUsername('toomuchprotein').then(user => {
+//   Twitter.getTweetsByUserId(user.id).then(tweets => {
+//       let tweet = tweets[0];
+
+//       Twitter.getEmbeddedTweet(tweet.id).then(embeded_tweet => {
+//         console.log(embeded_tweet);
+//       });
+//   })
+// });
+
+// Twitter.getEmbeddedProfile('toomuchprotein').then(data => {
+//   console.log(data);
+// })
+
+
+
+// (async () => {
+
+//   let url = "http://127.0.0.1:5000/test2";
+//   let response = await fetch(url, {
+//     method: "POST",
+//     headers: {"Content-Type": "application/json"},
+//     body: JSON.stringify({
+//       username: "KyleKulinski"
+//     })
+//   });
+
+//   let data = await response.json();
+//   console.log(data);
+// })();

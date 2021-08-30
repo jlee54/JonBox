@@ -5,6 +5,21 @@ module.exports = async (req, res) => {
     let lobby_code = req.body.lobbyCode;
     let player_name = req.body.playerName;
 
+    let q = {
+        selector: {
+            code: { "$eq": lobby_code },
+            name: { "$eq": player_name},
+            type: { "$eq": "Player"},
+        },
+        fields: ["id"],
+    };
+    let player_count = (await db.find(q)).docs.length
+    if (player_count > 0) {
+        return res.send({
+            error: "This player name has already been chosen"
+        });
+    }
+
     let headers = await db.head(player_id);
     let rev = headers.etag;
     rev = rev.slice(1, -1);

@@ -22,18 +22,6 @@ module.exports = async (req, res) => {
     };
 
     let lobby_response = await db.insert(lobby_data);
-    // let socket_io = require('../../socket.io/socket')(req, req.http);
-
-    // socket_io.init().then((socket) => {
-    //     console.log(socket);
-    //     socket.join(code);
-    // });
-    // console.log(req.socket);
-    // var io = req.app.get('socketio');
-    // io.join('hi!');
-    let socket = req.app.get("socket");
-    socket.join(code);
-    socket.to(code).emit("socket lobby created");
 
     let player_data = {
         lobby_id: lobby_response.id,
@@ -41,7 +29,12 @@ module.exports = async (req, res) => {
         type: "Player",
         leader: true
     };
-    await db.insert(player_data);
+    let player_response = await db.insert(player_data);
 
-    res.send(lobby_data);
+    let response = {
+        "code": code,
+        "playerId": player_response.id,
+    };
+
+    res.send(response);
 };

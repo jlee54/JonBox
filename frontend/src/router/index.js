@@ -29,6 +29,13 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "preLobby" */ "../views/PreLobby.vue"),
     props: true,
+  },
+  {
+    path: "/",
+    name: "TweetStreet",
+    component: () =>
+      import(/* webpackChunkName: "tweetStreet" */ "../views/games/TweetStreet.vue"),
+    props: true,
   }
 ];
 
