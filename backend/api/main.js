@@ -5,6 +5,9 @@ const express = require("express");
 const app = express();
 const http = require("http").Server(app);
 
+const path = require("path");
+global.base = path.dirname(path.resolve(__dirname));
+
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -33,8 +36,8 @@ app.get("/getValidTwitterAccount", getValidTwitterAccount);
 const validateTweetStreet = require("./routes/gameConfigurations/validateTweetStreet");
 app.post("/validateTweetStreet", validateTweetStreet);
 
-const getTweetStreetLobbyInfo = require("./routes/games/getTweetStreetLobbyInfo");
-app.post("/getTweetStreetLobbyInfo", getTweetStreetLobbyInfo);
+const tweetStreetStartGame = require("./routes/games/tweetStreet/startGame");
+app.get("/tweetStreet/startGame", tweetStreetStartGame);
 
 //const db = require('../db/couch');
 const io = require('../socket.io/socket').init(app, http).then((socket2) => {
@@ -52,6 +55,7 @@ const io = require('../socket.io/socket').init(app, http).then((socket2) => {
 //   app.set("socket", socket);
 //   console.log(socket);
 // });
+
 
 http.listen(3000, function() {
   console.log("Listening on 3000");

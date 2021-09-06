@@ -44,14 +44,14 @@ module.exports.init = function(app, http){
     //     socket.on ...
     // })
 
-    const test = require("../api/routes/test");
-    app.get("/test", test);
+    const socket_test = require("../api/routes/socket_test");
+    app.get("/socket_test", socket_test);
 
     return new Promise((acc, rej) => {
       io.sockets.on("connection", function (socket) {
         console.log("Client Connected");
         // console.log(socket);
-        socket.on("test", test);
+        socket.on("socket_test", socket_test);
 
           // let socket2 = app.get("socket");
         // socket2.join("hey");

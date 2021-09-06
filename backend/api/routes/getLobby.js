@@ -19,7 +19,7 @@ module.exports = async (req, res) => {
 
     q = {
         selector: {
-            code: { "$eq": lobby_code },
+            lobby_code: { "$eq": lobby_code },
             type: { "$eq": "Player"},
         },
         fields: ["id", "name"],

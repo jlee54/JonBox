@@ -32,7 +32,7 @@ module.exports = async (req, res) => {
         }
 
         let player_data = {
-            code: lobby_code,
+            lobby_code: lobby_code,
             type: "Player"
         };
 

@@ -109,13 +109,29 @@ class Twitter {
 
   static async createLobbyTweets(tweets, lobby_code) {
     let tweet_data = {
-        account_handle: account_handle,
         tweets: tweets,
         type: "Tweets",
         lobby_code: lobby_code,
         date: (new Date()).toISOString()
     };
     await db.insert(tweet_data);
+  }
+
+  static async getTweetsInfoByLobby(lobby_code) {
+    let q = {
+        selector: {
+            lobby_code: { "$eq": lobby_code },
+            type: { "$eq": "Tweets"},
+        },
+        fields: ["_id", "rev", "tweets"],
+    };
+
+    let tweets = (await db.find(q)).docs;
+    if (tweets.length == 0) {
+      throw Twitter.tweetsNotFoundException();
+    }
+
+    return tweets[0];
   }
 
   static accountNotFoundException() {

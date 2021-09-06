@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
 
     let q = {
         selector: {
-            code: { "$eq": lobby_code },
+            lobby_code: { "$eq": lobby_code },
             name: { "$eq": player_name},
             type: { "$eq": "Player"},
         },
@@ -27,7 +27,7 @@ module.exports = async (req, res) => {
     let player_data = {
         _id: player_id,
         _rev: rev,
-        code: lobby_code,
+        lobby_code: lobby_code,
         name: player_name,
         type: "Player"
     };
