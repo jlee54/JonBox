@@ -27,7 +27,27 @@ export default {
       });
 
       response = await response.json();
-      this.tweets = response.tweets;
+
+      if (response.error) {
+        console.log(response.error);
+      } else {
+        this.tweets = response.tweets;
+      }
+    },
+    async createTweetDistribution() {
+      let params = new URLSearchParams({
+        lobbyCode: this.lobby_code
+      });
+      let response = await fetch("http://localhost:3000/getLobby?" + params, {
+        method: "POST",
+        jsonheaders: {"Content-Type": "application/json"},
+      });
+
+      response = await response.json();
+
+      if (response.error) {
+        console.log(response.error);
+      }
     }
   }
 };

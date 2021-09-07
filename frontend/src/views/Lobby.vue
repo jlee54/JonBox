@@ -11,12 +11,14 @@
       <br>
       <div v-if="valid_lobby">
         The lobby is ready
-        <br><br>
-        <button @click="startGame"
-        >Start Game</button>
       </div>
       <div v-else>
         The lobby is not ready
+      </div>
+      <div v-if="valid_conf && valid_lobby">
+        <br><br>
+        <button @click="startGame"
+        >Start Game</button>
       </div>
     </div>
     <br>
@@ -148,7 +150,7 @@ export default {
   },
   computed: {
     valid_lobby() {
-      if (this.players.length > 1) {
+      if (this.players.length > 0) {
         return true;
       }
       return false;
