@@ -14,6 +14,6 @@ Generic installation instructions. These are untested, just going off memory her
   -> Create .env file with variables:
     - DB_USERNAME (ex. "jlee") (For CouchDB)
     - DB_PASSWORD (ex. "") (For CouchDB)
-    - TWITTER_TOKEN (ex. "") (For Twitter API usage)
+    - TWITTER_TOKEN (ex. "") (For Twitter API usage - Sign up [here](https://developer.twitter.com/en))
     - SCRAPER_URL (ex ""http://127.0.0.1:5000") (For Web Scrapper - Default IP)
 1. Within scrapper folder run `python app.py `
