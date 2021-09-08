@@ -16,4 +16,4 @@ Generic installation instructions. These are untested, just going off memory her
     - DB_PASSWORD (ex. "") (For CouchDB)
     - TWITTER_TOKEN (ex. "") (For Twitter API usage)
     - SCRAPER_URL (ex ""http://127.0.0.1:5000") (For Web Scrapper - Default IP)
-1. Within scrapper folder run `python app.py 
+1. Within scrapper folder run `python app.py `
